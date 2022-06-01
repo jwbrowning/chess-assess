@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/chess-assess/static/css/main.576f1954.css",
-    "main.js": "/chess-assess/static/js/main.2da46509.js",
-    "static/js/787.cf3130e6.chunk.js": "/chess-assess/static/js/787.cf3130e6.chunk.js",
-    "static/media/fischerasciiscreenshot.png": "/chess-assess/static/media/fischerasciiscreenshot.4d6831eee50984af1a00.png",
-    "static/media/chessboard.png": "/chess-assess/static/media/chessboard.48b7fad575b426b958cf.png",
-    "index.html": "/chess-assess/index.html",
-    "main.576f1954.css.map": "/chess-assess/static/css/main.576f1954.css.map",
-    "main.2da46509.js.map": "/chess-assess/static/js/main.2da46509.js.map",
-    "787.cf3130e6.chunk.js.map": "/chess-assess/static/js/787.cf3130e6.chunk.js.map"
+    "main.css": "/static/css/main.576f1954.css",
+    "main.js": "/static/js/main.cd9c5e5f.js",
+    "static/js/787.14bbe4d3.chunk.js": "/static/js/787.14bbe4d3.chunk.js",
+    "static/media/fischerasciiscreenshot.png": "/static/media/fischerasciiscreenshot.4d6831eee50984af1a00.png",
+    "static/media/chessboard.png": "/static/media/chessboard.48b7fad575b426b958cf.png",
+    "index.html": "/index.html",
+    "main.576f1954.css.map": "/static/css/main.576f1954.css.map",
+    "main.cd9c5e5f.js.map": "/static/js/main.cd9c5e5f.js.map",
+    "787.14bbe4d3.chunk.js.map": "/static/js/787.14bbe4d3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.576f1954.css",
-    "static/js/main.2da46509.js"
+    "static/js/main.cd9c5e5f.js"
   ]
 }
