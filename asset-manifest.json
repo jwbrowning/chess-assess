@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/chess-assess/static/css/main.576f1954.css",
+    "main.js": "/chess-assess/static/js/main.2da46509.js",
+    "static/js/787.cf3130e6.chunk.js": "/chess-assess/static/js/787.cf3130e6.chunk.js",
+    "static/media/fischerasciiscreenshot.png": "/chess-assess/static/media/fischerasciiscreenshot.4d6831eee50984af1a00.png",
+    "static/media/chessboard.png": "/chess-assess/static/media/chessboard.48b7fad575b426b958cf.png",
+    "index.html": "/chess-assess/index.html",
+    "main.576f1954.css.map": "/chess-assess/static/css/main.576f1954.css.map",
+    "main.2da46509.js.map": "/chess-assess/static/js/main.2da46509.js.map",
+    "787.cf3130e6.chunk.js.map": "/chess-assess/static/js/787.cf3130e6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.576f1954.css",
+    "static/js/main.2da46509.js"
+  ]
+}
