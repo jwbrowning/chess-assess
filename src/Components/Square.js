@@ -14,11 +14,11 @@ function Square(props) {
     }
 
     let trans = {
-        transform: 'translate(' + (props.x) + 'px, ' + (props.y) + 'px)'
+        transform: 'translate(' + (.1 * props.x) + 'vmin, ' + (.1 * props.y) + 'vmin)'
     }
 
     let mTrans = {
-        transform: 'translate(' + Math.floor(.3125 * props.pieceSize) + 'px, ' + Math.floor(.3125 * props.pieceSize) + 'px)'
+        transform: 'translate(' + .1 * Math.floor(.3125 * props.pieceSize) + 'vmin, ' + .1 * Math.floor(.3125 * props.pieceSize) + 'vmin)'
     }
 
     let color = {
@@ -26,8 +26,8 @@ function Square(props) {
     }
 
     let mSize = {
-        width: Math.floor(.375 * props.pieceSize) + 'px',
-        height: Math.floor(.375 * props.pieceSize) + 'px'
+        width: .1 * Math.floor(.375 * props.pieceSize) + 'vmin',
+        height: .1 * Math.floor(.375 * props.pieceSize) + 'vmin'
     }
 
     return(

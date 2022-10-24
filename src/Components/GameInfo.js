@@ -17,10 +17,10 @@ function GameInfo(props) {
     // const blackChanceLength = .05 * length;
 
     let whiteEvalBar = {
-        width: whiteEvalLength + 'px',
+        width: .1 * whiteEvalLength + 'vmin',
     }
     let blackEvalBar = {
-        width: blackEvalLength + 'px',
+        width: .1 * blackEvalLength + 'vmin',
     }
 
     var most = 'draw'
@@ -33,24 +33,24 @@ function GameInfo(props) {
     }
 
     let whiteChanceBar = {
-        width: whiteChanceLength + 'px',
+        width: .1 * whiteChanceLength + 'vmin',
     }
     let drawChanceBar = {
-        width: drawChanceLength + 'px',
+        width: .1 * drawChanceLength + 'vmin',
     }
     let blackChanceBar = {
-        width: blackChanceLength + 'px',
+        width: .1 * blackChanceLength + 'vmin',
     }
     let whiteChanceBar2 = {
-        width: whiteChanceLength + 'px',
+        width: .1 * whiteChanceLength + 'vmin',
         color: '#000f'
     }
     let drawChanceBar2 = {
-        width: drawChanceLength + 'px',
+        width: .1 * drawChanceLength + 'vmin',
         color: '#000f'
     }
     let blackChanceBar2 = {
-        width: blackChanceLength + 'px',
+        width: .1 * blackChanceLength + 'vmin',
         color: '#ffff'
     }
 

@@ -5,7 +5,7 @@ import '../App.css';
 function Piece(props) {
 
     let trans = {
-        transform: 'translate(' + props.x + 'px, ' + props.y + 'px)',
+        transform: 'translate(' + .1 * props.x + 'vmin, ' + .1 * props.y + 'vmin)',
         // filter: 'grayscale(100%)'
     }
 

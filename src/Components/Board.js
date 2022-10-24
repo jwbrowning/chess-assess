@@ -479,15 +479,15 @@ function Board(props) {
     let basSize = 
     props.type == 'opening trainer' ? 
     {
-        width: (10 + props.pieceSize * 8 + props.pieceSize * 4) + 'px',
-        height: (10 + props.pieceSize * 8) + 'px'
+        width: (.1 * (10 + props.pieceSize * 8 + props.pieceSize * 4)) + 'vmin',
+        height: (.1 * (10 + props.pieceSize * 8)) + 'vmin'
     } : props.type == 'small-tournament' ? {
-        width: (props.pieceSize * 8 * 4) + 'px',
-        height: (10 + props.pieceSize * 8) + 'px'
+        width: .1 * (props.pieceSize * 8 * 4) + 'vmin',
+        height: .1 * (10 + props.pieceSize * 8) + 'vmin'
     } : {
-        width: (10 + 502) + 'px',
-        height: (10 + 512) + 'px',
-        paddingTop: '64px'
+        width: .1 * (10 + 502) + 'vmin',
+        height: .1 * (10 + 512) + 'vmin',
+        paddingTop: '6.4vmin'
     }
 
     let basMid = {
@@ -503,13 +503,13 @@ function Board(props) {
     }
 
     let bSize = {
-        width: (props.pieceSize * 8) + 'px',
-        height: (props.pieceSize * 8) + 'px'
+        width: .1 * (props.pieceSize * 8) + 'vmin',
+        height: .1 * (props.pieceSize * 8) + 'vmin'
     }
 
     let pSize = {
-        width: props.pieceSize + 'px',
-        height: props.pieceSize + 'px'
+        width: .1 * props.pieceSize + 'vmin',
+        height: .1 * props.pieceSize + 'vmin'
     }
 
     const hue = 0;
