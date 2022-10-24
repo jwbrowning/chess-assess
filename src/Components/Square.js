@@ -13,12 +13,14 @@ function Square(props) {
         setHighlight(false);
     }
 
+    const unitStart = 'calc(var(--unit) * ';
+
     let trans = {
-        transform: 'translate(' + (.1 * props.x) + 'vmin, ' + (.1 * props.y) + 'vmin)'
+        transform: 'translate(' + unitStart + (.1 * props.x) + '), ' + unitStart + (.1 * props.y) + '))'
     }
 
     let mTrans = {
-        transform: 'translate(' + .1 * Math.floor(.3125 * props.pieceSize) + 'vmin, ' + .1 * Math.floor(.3125 * props.pieceSize) + 'vmin)'
+        transform: 'translate(' + unitStart + (.1 * Math.floor(.3125 * props.pieceSize)) + '), ' + unitStart + (.1 * Math.floor(.3125 * props.pieceSize)) + '))'
     }
 
     let color = {
@@ -26,8 +28,8 @@ function Square(props) {
     }
 
     let mSize = {
-        width: .1 * Math.floor(.375 * props.pieceSize) + 'vmin',
-        height: .1 * Math.floor(.375 * props.pieceSize) + 'vmin'
+        width: unitStart + (.1 * Math.floor(.375 * props.pieceSize)) + ')',
+        height: unitStart + (.1 * Math.floor(.375 * props.pieceSize)) + ')'
     }
 
     return(

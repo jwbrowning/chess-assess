@@ -4,8 +4,10 @@ import '../App.css';
 
 function Piece(props) {
 
+    const unitStart = 'calc(var(--unit) * ';
+
     let trans = {
-        transform: 'translate(' + .1 * props.x + 'vmin, ' + .1 * props.y + 'vmin)',
+        transform: 'translate(' + unitStart + (.1 * props.x) + '), ' + unitStart + (.1 * props.y) + '))',
         // filter: 'grayscale(100%)'
     }
 

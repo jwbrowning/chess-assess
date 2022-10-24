@@ -16,11 +16,13 @@ function GameInfo(props) {
     // const drawChanceLength = .35 * length;
     // const blackChanceLength = .05 * length;
 
+    const unitStart = 'calc(var(--unit) * ';
+
     let whiteEvalBar = {
-        width: .1 * whiteEvalLength + 'vmin',
+        width: unitStart + (.1 * whiteEvalLength) + ')',
     }
     let blackEvalBar = {
-        width: .1 * blackEvalLength + 'vmin',
+        width: unitStart + (.1 * blackEvalLength) + ')',
     }
 
     var most = 'draw'
@@ -33,24 +35,24 @@ function GameInfo(props) {
     }
 
     let whiteChanceBar = {
-        width: .1 * whiteChanceLength + 'vmin',
+        width: unitStart + (.1 * whiteChanceLength) + ')',
     }
     let drawChanceBar = {
-        width: .1 * drawChanceLength + 'vmin',
+        width: unitStart + (.1 * drawChanceLength) + ')',
     }
     let blackChanceBar = {
-        width: .1 * blackChanceLength + 'vmin',
+        width: unitStart + (.1 * blackChanceLength) + ')',
     }
     let whiteChanceBar2 = {
-        width: .1 * whiteChanceLength + 'vmin',
+        width: unitStart + (.1 * whiteChanceLength) + ')',
         color: '#000f'
     }
     let drawChanceBar2 = {
-        width: .1 * drawChanceLength + 'vmin',
+        width: unitStart + (.1 * drawChanceLength) + ')',
         color: '#000f'
     }
     let blackChanceBar2 = {
-        width: .1 * blackChanceLength + 'vmin',
+        width: unitStart + (.1 * blackChanceLength) + ')',
         color: '#ffff'
     }
 

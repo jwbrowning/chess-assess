@@ -476,18 +476,19 @@ function Board(props) {
         }
     }
     
+    const unitStart = 'calc(var(--unit) * ';
     let basSize = 
     props.type == 'opening trainer' ? 
     {
-        width: (.1 * (10 + props.pieceSize * 8 + props.pieceSize * 4)) + 'vmin',
-        height: (.1 * (10 + props.pieceSize * 8)) + 'vmin'
+        width: unitStart + ((.1 * (10 + props.pieceSize * 8 + props.pieceSize * 4))) + ')',
+        height: unitStart + ((.1 * (10 + props.pieceSize * 8))) + ')'
     } : props.type == 'small-tournament' ? {
-        width: .1 * (props.pieceSize * 8 * 4) + 'vmin',
-        height: .1 * (10 + props.pieceSize * 8) + 'vmin'
+        width: unitStart + (.1 * (props.pieceSize * 8 * 4)) + ')',
+        height: unitStart + (.1 * (10 + props.pieceSize * 8)) + ')'
     } : {
-        width: .1 * (10 + 502) + 'vmin',
-        height: .1 * (10 + 512) + 'vmin',
-        paddingTop: '6.4vmin'
+        width: unitStart + (.1 * (10 + 502)) + ')',
+        height: unitStart + (.1 * (10 + 512)) + ')',
+        paddingTop: unitStart + (6.4) + ')'
     }
 
     let basMid = {
@@ -502,14 +503,15 @@ function Board(props) {
         transform: 'translate(-50%, -50%)'
     }
 
+
     let bSize = {
-        width: .1 * (props.pieceSize * 8) + 'vmin',
-        height: .1 * (props.pieceSize * 8) + 'vmin'
+        width: unitStart + (.1 * (props.pieceSize * 8)) + ')',
+        height: unitStart + (.1 * (props.pieceSize * 8)) + ')'
     }
 
     let pSize = {
-        width: .1 * props.pieceSize + 'vmin',
-        height: .1 * props.pieceSize + 'vmin'
+        width: unitStart + (.1 * props.pieceSize) + ')',
+        height: unitStart + (.1 * props.pieceSize) + ')'
     }
 
     const hue = 0;
