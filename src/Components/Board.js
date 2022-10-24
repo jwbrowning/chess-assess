@@ -73,6 +73,13 @@ function GetImage(piece) {
     return images[p];
 }
 
+
+function getWindowSize() {
+    const {innerWidth, innerHeight} = window;
+    // console.log("W:",innerWidth,"H:",innerHeight)
+    return {innerWidth, innerHeight};
+}
+
 const cord = {
     'a': 0,
     'b': 1,
@@ -361,7 +368,10 @@ function Board(props) {
         var startSqu = GetSquare(flipped, x, y, props.pieceSize);
         setStartSq(startSqu);
         console.log('start ' + startSqu)
-        const size = props.pieceSize * 8;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
+        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
+        // console.log("size: ",size);
         startX = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
         startY = Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize;
         endSq = "";
@@ -382,7 +392,10 @@ function Board(props) {
     };
 
     const DropPiece = (e, x, y) => {
-        const size = props.pieceSize * 8;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
+        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
+        // console.log("size: ",size);
         const oX = startX - (Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize);
         const oY = startY - (Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize);
         x = x - oX
@@ -443,7 +456,10 @@ function Board(props) {
 
     const ClickBoard = (e) => {
         if (props.type == 'small-tournament') return;
-        const size = props.pieceSize * 8;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
+        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
+        // console.log("size: ",size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
         const y = Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize;
         for (var i = 0; i < pieces.length; i++) {
@@ -453,7 +469,10 @@ function Board(props) {
     }
 
     const DragEndBoard = (e) => {
-        const size = props.pieceSize * 8;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
+        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
+        // console.log("size: ",size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
         const y = Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize;
         // for (var i = 0; i < pieces.length; i++) {
@@ -543,6 +562,20 @@ function Board(props) {
             // setGameResult('1-0')
         }
     }, [props.pgn])
+
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+
+    useEffect(() => {
+        function handleWindowResize() {
+            setWindowSize(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
 
     return(
         <div className='board-and-stuff'
