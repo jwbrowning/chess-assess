@@ -400,7 +400,7 @@ function Board(props) {
         setStartSq(startSqu);
         console.log('start ' + startSqu)
         const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const pct = Number((pctStr.trim()).substring(0, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
         // console.log("size: ",size);
         startX = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
@@ -424,7 +424,7 @@ function Board(props) {
 
     const DropPiece = (e, x, y) => {
         const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const pct = Number((pctStr.trim()).substring(1, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
         // console.log("size: ",size);
         const oX = startX - (Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize);
@@ -488,10 +488,10 @@ function Board(props) {
     const ClickBoard = (e) => {
         if (props.type == 'small-tournament') return;
         const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const pct = Number((pctStr.trim()).substring(1, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
-        console.log("pct: ", pctStr, pct);
-        console.log("size: ", size);
+        // console.log("pct: ", pctStr, pct);
+        // console.log("size: ", size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
         const y = Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize;
         for (var i = 0; i < pieces.length; i++) {
@@ -502,7 +502,7 @@ function Board(props) {
 
     const DragEndBoard = (e) => {
         const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
+        const pct = Number((pctStr.trim()).substring(1, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
         // console.log("size: ",size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
