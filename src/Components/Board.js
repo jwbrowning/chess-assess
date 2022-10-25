@@ -76,7 +76,7 @@ function GetImage(piece) {
 
 function getWindowSize() {
     const {innerWidth, innerHeight} = window;
-    console.log("W:",innerWidth,"H:",innerHeight)
+    // console.log("W:",innerWidth,"H:",innerHeight)
     return {innerWidth, innerHeight};
 }
 
@@ -399,8 +399,8 @@ function Board(props) {
         var startSqu = GetSquare(flipped, x, y, props.pieceSize);
         setStartSq(startSqu);
         console.log('start ' + startSqu)
-        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number((pctStr.trim()).substring(0, pctStr.length - 4)) / 1000;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit').trim();
+        const pct = Number(pctStr.substring(0, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
         // console.log("size: ",size);
         startX = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
@@ -423,8 +423,8 @@ function Board(props) {
     };
 
     const DropPiece = (e, x, y) => {
-        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number((pctStr.trim()).substring(1, pctStr.length - 4)) / 1000;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit').trim();
+        const pct = Number(pctStr.substring(0, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
         // console.log("size: ",size);
         const oX = startX - (Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize);
@@ -487,11 +487,11 @@ function Board(props) {
 
     const ClickBoard = (e) => {
         if (props.type == 'small-tournament') return;
-        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number((pctStr.trim()).substring(1, pctStr.length - 4)) / 1000;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit').trim();
+        const pct = Number(pctStr.substring(0, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
-        // console.log("pct: ", pctStr, pct);
-        // console.log("size: ", size);
+        console.log("pct: ", pctStr, pct);
+        console.log("size: ", size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
         const y = Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize;
         for (var i = 0; i < pieces.length; i++) {
@@ -501,8 +501,8 @@ function Board(props) {
     }
 
     const DragEndBoard = (e) => {
-        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
-        const pct = Number((pctStr.trim()).substring(1, pctStr.length - 4)) / 1000;
+        const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit').trim();
+        const pct = Number(pctStr.substring(0, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
         // console.log("size: ",size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
@@ -678,6 +678,32 @@ function Board(props) {
             </div>
             {props.type == 'opening trainer' ? <div>
             <div className='button-panel'>
+                <div className='top-buttons'>
+                    <div className='col'>
+                        <button className='small-button tooltip'
+                            onClick={resetBoard}>
+                            <img className='button-icon' src={rotateIcon} alt='Reset' data='Reset Board' />
+                            <span className='tooltiptext'>reset board</span>
+                        </button>
+                        <button className='small-button tooltip'
+                            onClick={Flip}>
+                            <img className='button-icon' src={swapIcon} alt='Flip' data='Flip Board' />
+                            <span className='tooltiptext'>flip board</span>
+                        </button>
+                    </div>
+                    <div className='col'>
+                        <button className='small-button tooltip'
+                            onClick={saveTrainingPosition}>
+                            <img className='button-icon' src={saveIcon} alt='Save' data='Set position to train from' />
+                            <span className='tooltiptext'>save position</span>
+                        </button>
+                        <button className='small-button tooltip'
+                            onClick={Analyze}>
+                            <img className='button-icon' src={microscopeIcon} alt='Analyze' data='Analyze on Lichess' />
+                            <span className='tooltiptext'>analyze on lichess</span>
+                        </button>
+                    </div>
+                </div>
                 <div className='database-selection'>
                     <div className='time-selection'>
                         <button className={'selection-button' + (selectedTimeControls['Blitz'] ? ' selected-button' : ' unselected-button')}
@@ -713,32 +739,6 @@ function Board(props) {
                         <button className={'selection-button' + (selectedRatings['2500'] ? ' selected-button' : ' unselected-button')}
                             onClick={() => {updateRatings('2500', !selectedRatings['2500'])}}>
                             2500
-                        </button>
-                    </div>
-                </div>
-                <div className='top-buttons'>
-                    <div className='col'>
-                        <button className='small-button tooltip'
-                            onClick={resetBoard}>
-                            <img className='button-icon' src={rotateIcon} alt='Reset' data='Reset Board' />
-                            <span className='tooltiptext'>reset board</span>
-                        </button>
-                        <button className='small-button tooltip'
-                            onClick={Flip}>
-                            <img className='button-icon' src={swapIcon} alt='Flip' data='Flip Board' />
-                            <span className='tooltiptext'>flip board</span>
-                        </button>
-                    </div>
-                    <div className='col'>
-                        <button className='small-button tooltip'
-                            onClick={saveTrainingPosition}>
-                            <img className='button-icon' src={saveIcon} alt='Save' data='Set position to train from' />
-                            <span className='tooltiptext'>save position</span>
-                        </button>
-                        <button className='small-button tooltip'
-                            onClick={Analyze}>
-                            <img className='button-icon' src={microscopeIcon} alt='Analyze' data='Analyze on Lichess' />
-                            <span className='tooltiptext'>analyze on lichess</span>
                         </button>
                     </div>
                 </div>
