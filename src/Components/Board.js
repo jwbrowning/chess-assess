@@ -182,8 +182,38 @@ function Board(props) {
     const [trainingPosition, setTrainingPosition] = useState('');
     const [redoStack, setRedoStack] = useState([]);
 
-    const urlStart = 'https://explorer.lichess.ovh/lichess?variant=standard&fen=';
-    const urlEnd = '&play=&since=2012-01&until=2022-04&speeds=classical%2Crapid%2Cblitz&ratings=2000%2C2200%2C2500'
+    const [urlStart, setUrlStart] = useState('https://explorer.lichess.ovh/lichess?variant=standard&fen=');
+    const [urlEnd, setUrlEnd] = useState('&play=&since=2012-01&until=2022-04&speeds=classical%2Crapid%2Cblitz&ratings=2000%2C2200%2C2500');
+    const [selectedRatings, setSelectedRatings] = useState({
+        '1600': true,
+        '1800': true,
+        '2000': true,
+        '2200': true,
+        '2500': true,
+    })
+    const [selectedTimeControls, setSelectedTimeControls] = useState({
+        'Blitz': true,
+        'Rapid': true,
+        'Classical': true,
+    })
+
+    useEffect(() => {
+        var url = '&play=&since=2012-01&until=2022-04&speeds=';
+        if (selectedTimeControls['Classical']) url += 'classical%2C'
+        if (selectedTimeControls['Rapid']) url += 'rapid%2C'
+        if (selectedTimeControls['Blitz']) url += 'blitz%2C'
+        if (url.slice(-1) == '=') url += 'classical%2C'
+        if (url.slice(-1) == 'C') url = url.slice(0, -3)
+        url += '&ratings='
+        if (selectedRatings['1600']) url += '1600%2C'
+        if (selectedRatings['1800']) url += '1800%2C'
+        if (selectedRatings['2000']) url += '2000%2C'
+        if (selectedRatings['2200']) url += '2200%2C'
+        if (selectedRatings['2500']) url += '2500%2C'
+        if (url.slice(-1) == '=') url += '2500%2C'
+        if (url.slice(-1) == 'C') url = url.slice(0, -3)
+        setUrlEnd(url);
+    }, [selectedRatings, selectedTimeControls])
 
     const [flipped, setFlipped] = useState(false);
 
@@ -229,6 +259,7 @@ function Board(props) {
     }
 
     const requestResponse = (ch, respond=autoRespond) => {
+        // console.log(urlEnd);
         if (!respond) return;
         var fen = ch.fen();
         console.log(fen);
@@ -577,6 +608,28 @@ function Board(props) {
         };
     }, []);
 
+    const updateRatings = (rating, status) => {
+        var ratings = {
+            '1600': selectedRatings['1600'],
+            '1800': selectedRatings['1800'],
+            '2000': selectedRatings['2000'],
+            '2200': selectedRatings['2200'],
+            '2500': selectedRatings['2500'],
+        };
+        ratings[rating] = status;
+        setSelectedRatings(ratings);
+    }
+
+    const updateTimes = (time, status) => {
+        var times = {
+            'Blitz': selectedTimeControls['Blitz'],
+            'Rapid': selectedTimeControls['Rapid'],
+            'Classical': selectedTimeControls['Classical'],
+        };
+        times[time] = status;
+        setSelectedTimeControls(times);
+    }
+
     return(
         <div className='board-and-stuff'
         style={props.type=='opening trainer' ? {...basMore, ...basSize} : props.type == 'small-tournament' ? {...basSize} : {...basSize, ...basMid}}>
@@ -624,6 +677,44 @@ function Board(props) {
             </div>
             {props.type == 'opening trainer' ? <div>
             <div className='button-panel'>
+                <div className='database-selection'>
+                    <div className='time-selection'>
+                        <button className={'selection-button' + (selectedTimeControls['Blitz'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateTimes('Blitz', !selectedTimeControls['Blitz'])}}>
+                            Blitz
+                        </button>
+                        <button className={'selection-button' + (selectedTimeControls['Rapid'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateTimes('Rapid', !selectedTimeControls['Rapid'])}}>
+                            Rapid
+                        </button>
+                        <button className={'selection-button' + (selectedTimeControls['Classical'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateTimes('Classical', !selectedTimeControls['Classical'])}}>
+                            Classical
+                        </button>
+                    </div>
+                    <div className='rating-selection'>
+                        <button className={'selection-button' + (selectedRatings['1600'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateRatings('1600', !selectedRatings['1600'])}}>
+                            1600
+                        </button>
+                        <button className={'selection-button' + (selectedRatings['1800'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateRatings('1800', !selectedRatings['1800'])}}>
+                            1800
+                        </button>
+                        <button className={'selection-button' + (selectedRatings['2000'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateRatings('2000', !selectedRatings['2000'])}}>
+                            2000
+                        </button>
+                        <button className={'selection-button' + (selectedRatings['2200'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateRatings('2200', !selectedRatings['2200'])}}>
+                            2200
+                        </button>
+                        <button className={'selection-button' + (selectedRatings['2500'] ? ' selected-button' : ' unselected-button')}
+                            onClick={() => {updateRatings('2500', !selectedRatings['2500'])}}>
+                            2500
+                        </button>
+                    </div>
+                </div>
                 <div className='top-buttons'>
                     <div className='col'>
                         <button className='small-button tooltip'
@@ -681,6 +772,7 @@ function Board(props) {
             <button className='help'>?
                 <span className='help-text'>
                     Welcome to the opening trainer!
+                    {'\n'}Here you can play against the Lichess Opening Database.
                     {'\n'}
                     {'\n'}You can freely make moves on the board. Click the Save button to
                     {'\n'}save the position you want to train. 

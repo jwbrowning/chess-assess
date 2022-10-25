@@ -36,7 +36,7 @@ function NavBar() {
                             <Link to='openings'><h2>Opening Trainer</h2></Link>
                         </li>
                     </ul>
-                    <button style={{padding: '10px'}}
+                    <button style={{padding: '1.0vmin'}}
                             onClick={() => {
                                 document.documentElement.style.setProperty('--hue', (Math.floor(Math.random() * 360) - 0) + 'deg');
                                 document.documentElement.style.setProperty('--sat', (Math.floor(Math.random() * 60) + 80) + '%');

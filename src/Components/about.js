@@ -6,7 +6,7 @@ import ReactGA from 'react-ga'
 
 export default function AboutPage() {
 
-    const comingSoon = true;
+    const comingSoon = false;
 
     return (
         <div className='about'>
@@ -62,7 +62,6 @@ export default function AboutPage() {
                     }} className='twitter-link general-link' target="_blank" rel="noopener noreferrer" href="https://chessassess.com/follow">{' the Follow Tournaments page'}</a>
                     . It's unique in that not only do I run simulations between rounds to predict the tournament winner, 
                     but I also am actively predicting the result of each game as it's being played, move-by-move.
-                    I'll describe how I accomplish both of these components and more below.
                 </p>
                 <h5>
                     Simulations
@@ -95,42 +94,6 @@ export default function AboutPage() {
                     }} className='twitter-link general-link' target="_blank" rel="noopener noreferrer" href="https://wismuth.com/elo/calculator.html">{' this super useful site, '}</a>
                     which are elo-based.
                 </p>
-                <p>
-                    The next step was trying to account for "must-win" situations. 
-                    First I needed to come up with W/D/L percentages for a player in a must-win situation.
-                    My assumption is that when a player must win, they will play in such a way that increases their overall variance, at the cost of their expected score in the game.
-                    I tried to adjust the formulas to achieve this result. Here is an example:
-                </p>
-                <p>
-                    Let's take a game with two players rated 2780.
-                    In a normal situation where neither player needs to win, we predict 23% white win, 64% draw, 13% black win.
-                    In a situation where white 100% must win, my model gives 29% white win, 41% draw, 28% black win. 
-                    If black 100% must win, we get 40% white win, 38% draw, 22% black win. 
-                    If both players 100% must win, we get 38% white win, 34% draw, 28% black win. 
-                    To me these numbers seem to make some sense, but perhaps my solution is rather arbitrary. 
-                    I'd love to hear thoughts/suggestions.
-                </p>
-                <p>
-                    In order to define what a "must-win" situation really is I assign each player a "Must-Win Factor (MWF)". 
-                    This will be a number between 0 and 1 that tells us how much the player needs to win (0 = 0% must win, 1 = 100% must win).
-                </p>
-                <p>
-                    I define MWF = WN / RL
-                </p>
-                <p>
-                    where WN = wins needed; how many wins the player needs to get to the projected tournament-winning score
-                </p>
-                <p>
-                    and RL = rounds left in the tournament
-                </p>
-                <p>
-                    Then I take a weighted average of the W/D/L chance scenarios based on the MWFs for both players.
-                </p>
-                <p>
-                    To incorporate head-to-head scores I used classical games from the past 5 years only.
-                    I then took a weighted average of the head-to-head scores and W/D/L chances from above, where head-to-head score x was weighted as x/30. 
-                    Using the number 30 in the denominator was also rather arbitrary; it seemed big enough to not let head-to-head scores have too large an affect, but also small enough so that the affect could be noticed.
-                </p>
                 <h5>
                     Predicting Games Live
                 </h5>
@@ -150,6 +113,7 @@ export default function AboutPage() {
                     Instead of constantly re-running simulations, I run 256 different sets of simulations, for every combination of result for each of the 4 games: win, draw, loss, unknown. 
                     I can then use the live-updating W/D/L probabilities in combination with the corresponding simulations to output live updateing tournament victory chances.
                 </p>
+                
             </div>
             }
         </div>
