@@ -490,7 +490,7 @@ function Board(props) {
         const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit');
         const pct = Number(pctStr.substring(1, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
-        // console.log("size: ",size);
+        console.log("size: ",size);
         const x = Math.floor((e.nativeEvent.offsetX / size) * 8) * props.pieceSize;
         const y = Math.floor((e.nativeEvent.offsetY / size) * 8) * props.pieceSize;
         for (var i = 0; i < pieces.length; i++) {
