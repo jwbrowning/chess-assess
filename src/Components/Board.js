@@ -271,13 +271,17 @@ function Board(props) {
             .then((response) => {
                 var moves = [];
                 var total = 0;
+                // console.log("-------------------------");
                 for (var i = 0; i < response.data.moves.length; i++) {
                     var c = response.data.moves[i].black + response.data.moves[i].white + response.data.moves[i].draws;
+                    // console.log(response.data.moves[i].san + ": " + c);
                     moves.push({move: response.data.moves[i].san,
                         count: c, from: response.data.moves[i].uci.substring(0, 2), to: response.data.moves[i].uci.substring(2, 4)});
                     total += c;
                 }
                 var rand = Math.floor(Math.random() * total);
+                // console.log("total: " + total);
+                // console.log("rand:  " + rand);
                 var a = 0;
                 if (moves.length == 0) {
                     setAutoRespond(false);
@@ -287,12 +291,15 @@ function Board(props) {
                     if (rand < (moves[i].count) + a) {
                         if (!chess.move(moves[i].move)) {
                             setAutoRespond(false);
+                            // console.log("failed to make move");
                         } else {
                             setChess(chess);
                             UpdatePieces();
                             setStartSq('');
                             updateSquares('');
                             setRedoStack([]);
+                            // console.log("chose " + moves[i].move);
+                            // console.log(a + " - " + (a + moves[i].count));
                         }
                         break;
                     }
@@ -360,11 +367,11 @@ function Board(props) {
 
     const Analyze = () => {
         var pgn = chess.pgn()
-        console.log(pgn)
+        // console.log(pgn)
         axios.post('https://lichess.org/api/import', qs.stringify({ pgn: pgn }))
             .then((response) => {
                 window.open(response.data.url, '_blank');
-                console.log(response);
+                // console.log(response);
             })
             .catch((error) => {
                 console.log(error);
@@ -382,6 +389,7 @@ function Board(props) {
             const sCords = GetCords(flipped, sq);
             sqs.push({ type: 'start', x: sCords[0] * props.pieceSize, y: sCords[1] * props.pieceSize, key: 0 });
             const moves = chess.moves({ verbose: true, square: sq });
+            // console.log(moves);
             for (var i = 0; i < moves.length; i++) {
                 const cords = GetCords(flipped, moves[i].to);
                 if (chess.get(moves[i].to)) {
@@ -398,7 +406,7 @@ function Board(props) {
         e.dataTransfer.effectAllowed = 'move'
         var startSqu = GetSquare(flipped, x, y, props.pieceSize);
         setStartSq(startSqu);
-        console.log('start ' + startSqu)
+        // console.log('start ' + startSqu)
         const pctStr = getComputedStyle(document.documentElement).getPropertyValue('--unit').trim();
         const pct = Number(pctStr.substring(0, pctStr.length - 4)) / 1000;
         const size = Math.min(windowSize.innerHeight, windowSize.innerWidth) * pct * props.pieceSize * 8;
@@ -445,9 +453,9 @@ function Board(props) {
         e.dataTransfer.effectAllowed = 'move'
         e.preventDefault()
         endSq = GetSquare(flipped, x, y, props.pieceSize);
-        console.log('end ' + endSq + ' from ' + startSq)
+        // console.log('end ' + endSq + ' from ' + startSq)
         if (startSq != "") {
-            console.log('move')
+            // console.log('move')
             if (chess.move({ from: startSq, to: endSq })) {
                 setRedoStack([]);
                 requestResponse(chess);
@@ -462,7 +470,7 @@ function Board(props) {
 
     const Click = (e, x, y) => {
         var sq = GetSquare(flipped, x, y, props.pieceSize);
-        console.log("click " + sq);
+        // console.log("click " + sq);
         if (startSq == "") {
             // console.log("start")
             setStartSq(sq);
