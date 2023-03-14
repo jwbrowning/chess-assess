@@ -277,14 +277,14 @@ function Board(props) {
                         count: c, from: response.data.moves[i].uci.substring(0, 2), to: response.data.moves[i].uci.substring(2, 4)});
                     total += c;
                 }
-                var rand = Math.random();
+                var rand = Math.floor(Math.random() * total);
                 var a = 0;
                 if (moves.length == 0) {
                     setAutoRespond(false);
                     return;
                 }
                 for (var i = 0; i < moves.length; i++) {
-                    if (rand < (moves[i].count / total) + a) {
+                    if (rand < (moves[i].count) + a) {
                         if (!chess.move(moves[i].move)) {
                             setAutoRespond(false);
                         } else {
@@ -296,7 +296,7 @@ function Board(props) {
                         }
                         break;
                     }
-                    a += moves[i].count / total;
+                    a += moves[i].count;
                 }
             })
             .catch((error) => {

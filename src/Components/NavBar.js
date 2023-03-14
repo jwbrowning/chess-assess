@@ -39,7 +39,7 @@ function NavBar() {
                     <button style={{padding: '1.0vmin'}}
                             onClick={() => {
                                 document.documentElement.style.setProperty('--hue', (Math.floor(Math.random() * 360) - 0) + 'deg');
-                                document.documentElement.style.setProperty('--sat', (Math.floor(Math.random() * 60) + 80) + '%');
+                                document.documentElement.style.setProperty('--sat', (Math.floor(Math.random() * 60) + 50) + '%');
                                 ReactGA.event({
                                     category: 'Navigation Bar',
                                     action: 'Changed Color'
