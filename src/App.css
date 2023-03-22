@@ -66,6 +66,14 @@
   --glow-color: rgba(253, 213, 152, 0.605);
 } */
 
+@keyframes rainbow {
+  0%   {color: rgb(255, 141, 141); padding-bottom: 0px;}
+  25%  {color: rgb(255, 198, 129); padding-bottom: 10px;}
+  50%  {color: rgb(255, 255, 129); padding-bottom: 0px;}
+  75%  {color: rgb(114, 255, 114); padding-bottom: 10px;}
+  100% {color: rgb(117, 117, 255); padding-bottom: 0px;}
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -88,11 +96,11 @@ h1 {
 }
 
 h2 {
-  font-size: calc(var(--unit) * 3.2);
+  font-size: calc(var(--unit) * 3.0);
 }
 
 h3 {
-  font-size: calc(var(--unit) * 2.4);
+  font-size: calc(var(--unit) * 2.2);
 }
 
 /* .list {
@@ -391,7 +399,26 @@ button:active .button-icon2 {
 /*
  ---------------------------- FOLLOW TOURNAMENTS ----------------------------
 */
+.line-graph {
+  width: calc(var(--unit) * (87.8 - 1.6 * 4));
+  /* border: 5px solid red; */
+  background-color: var(--dark-background);
+  color: var(--text);
+  margin: 0 auto;
+  border: calc(var(--unit) * .5) solid var(--accent);
+  margin-bottom: calc(var(--unit) * 2.4);
+
+}
+.line-graph:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.tournament {
+  margin-top: calc(var(--unit) * 5);
+}
+
 .tournament-container {
+  border: 3px solid var(--accent);
   transition-duration: .5s;
   /* border: 5px solid var(--accent); */
   /* border-radius: 5%; */
@@ -403,15 +430,14 @@ button:active .button-icon2 {
   /* padding: 50px; */
   margin: 0 auto;
   margin-top: calc(var(--unit) * 2.4);
-  margin-bottom: calc(var(--unit) * 1.6);
+  margin-bottom: calc(var(--unit) * 9.6);
   /* margin:50px; */
   /* background-color: var(--light-background); */
-  /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
 }
 .tournament-container:hover {
   color: var(--text-hover);
   /* border: 5px solid var(--text-hover); */
-  /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .tournament-info-and-help {
@@ -421,6 +447,7 @@ button:active .button-icon2 {
 }
 
 .tournament-info {
+  /* border: 3px solid red; */
   width: 100%;
   margin: 0px;
   border: calc(var(--unit) * .5) solid var(--accent);
@@ -1241,14 +1268,14 @@ td {
 .info-text {
   text-align: center;
   color: var(--accent);
-  font-size: calc(var(--unit) * 3.2);
+  font-size: calc(var(--unit) * 3.0);
   /* padding-top: 50px; */
 }
 .info-text2 {
   text-align: center;
   color: var(--text-hover);
   font-size: calc(var(--unit) * 2.4);
-  padding-top: calc(var(--unit) * 2.0);
+  padding-top: calc(var(--unit) * 1.0);
 }
 .info-text3 {
   text-align: center;

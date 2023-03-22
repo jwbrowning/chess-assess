@@ -17,6 +17,12 @@ function NavBar() {
         ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
+    const anim = {
+        animationName: 'rainbow',
+        animationDuration: '.75s',
+        animationIterationCount: '3'
+    };
+
     return (
         <div className='NavBar'>
             <Router>
@@ -30,7 +36,7 @@ function NavBar() {
                             <Link to='about'><h2>About</h2></Link>
                         </li>
                         <li>
-                            <Link to='follow'><h2>Follow Tournaments</h2></Link>
+                            <Link to='follow'><h2 style={{...anim}}>Follow Tournaments</h2></Link>
                         </li>
                         <li>
                             <Link to='openings'><h2>Opening Trainer</h2></Link>

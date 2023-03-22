@@ -16,11 +16,13 @@ function ExpandedGameInfo(props) {
     // const drawChanceLength = .35 * length;
     // const blackChanceLength = .05 * length;
 
+    const unitStart = 'calc(var(--unit) * ';
+
     let whiteEvalBar = {
-        height: whiteEvalLength + 'px',
+        height: unitStart + (whiteEvalLength/10) + ')',
     }
     let blackEvalBar = {
-        height: blackEvalLength + 'px',
+        height: unitStart + (blackEvalLength/10) + ')',
     }
 
     var most = 'draw'
@@ -33,24 +35,24 @@ function ExpandedGameInfo(props) {
     }
 
     let whiteChanceBar = {
-        height: whiteChanceLength + 'px',
+        height: unitStart + (whiteChanceLength/10) + ')',
     }
     let drawChanceBar = {
-        height: drawChanceLength + 'px',
+        height: unitStart + (drawChanceLength/10) + ')',
     }
     let blackChanceBar = {
-        height: blackChanceLength + 'px',
+        height: unitStart + (blackChanceLength/10) + ')',
     }
     let whiteChanceBar2 = {
-        height: whiteChanceLength + 'px',
+        height: unitStart + (whiteChanceLength/10) + ')',
         color: '#000f'
     }
     let drawChanceBar2 = {
-        height: drawChanceLength + 'px',
+        height: unitStart + (drawChanceLength/10) + ')',
         color: '#000f'
     }
     let blackChanceBar2 = {
-        height: blackChanceLength + 'px',
+        height: unitStart + (blackChanceLength/10) + ')',
         color: '#ffff'
     }
 
