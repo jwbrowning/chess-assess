@@ -854,6 +854,15 @@ export default function Tournament(props) {
 
     const unitStart = 'calc(var(--unit) * ';
 
+    const getPlayerColor = (name) => {
+        if (props.playerInfo!=null && props.playerInfo.length>0 && props.playerInfo[0].length > 3) {
+            for (var i = 0; i < props.playerInfo.length; i++) {
+                if (name == props.playerInfo[i][0]) return props.playerInfo[i][3];
+            }
+        }
+        return null;
+    }
+
     let standingsHeight = {
         height: unitStart + props.playerInfo.length + ' * 5 + var(--unit) * 5)',
         // backgroundColor: 'red'
@@ -919,6 +928,7 @@ export default function Tournament(props) {
                                     pieceSize={boardTypes[i]=='small-tournament' ? 16 : 48} bid={i} selectedResult={chosenResults[i]}
                                     whiteButton={whiteButton} blackButton={blackButton} drawButton={drawButton}
                                     whitePlayer={props.games[i][0]} blackPlayer={props.games[i][1]} eval={game.eval} pgn={game.pgn}
+                                    wcol={getPlayerColor(props.games[i][0])} bcol={getPlayerColor(props.games[i][1])}
                                     whiteClock={game.wClock} blackClock={game.bClock}
                                     probs={chances[i]} depth={depths[i]}/>
                             ))}
@@ -947,7 +957,8 @@ export default function Tournament(props) {
                                         winChance={row.winChance}
                                         original={originalStandings}
                                         maxGap={biggestGap}
-                                        doColor={!standingsEqual()}/>
+                                        doColor={!standingsEqual()}
+                                        pcol={getPlayerColor(row.name)}/>
                                 ))}
                                 </tbody>
                             </table>

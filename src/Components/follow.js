@@ -52,8 +52,8 @@ export default function Follow() {
             display={true}
             broadcastRoundId='kx9gaE3w'
             playerInfo = {[
-                ['Nepo', 2795.0, 0.0],
-                ['Ding', 2788.0, 0.0],
+                ['Nepo', 2795.0, 0.0, "#938fff"],
+                ['Ding', 2788.0, 0.0, "#ff8f8f"],
             ]}
             games = {[
                 ['Ding', 'Nepo'],

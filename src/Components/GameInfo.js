@@ -60,7 +60,11 @@ function GameInfo(props) {
         <div className="game-info"
         style={{...props.size}}>
             <div className="game-player-info">
-                <h3>{props.whitePlayer + ' - ' + props.blackPlayer}</h3>
+                <h3>
+                    <bdo style={props.wcol ? {color: props.wcol} : {}}>{props.whitePlayer}</bdo>
+                    {" - "}
+                    <bdo style={props.bcol ? {color: props.bcol} : {}}>{props.blackPlayer}</bdo>
+                </h3>
             </div>
             <div className="game-eval-info">
                 <h4 className="bar-label">{'Eval (depth ' + props.depth + ')'}</h4>

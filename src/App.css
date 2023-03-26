@@ -536,6 +536,9 @@ td {
   font-size: calc(var(--unit) * 1.8);
   /* background-color: var(--background); */
   color: var(--text-hover);
+}
+
+.reverse-hue-change {
   filter: hue-rotate(calc(-1*var(--hue)));
 }
 

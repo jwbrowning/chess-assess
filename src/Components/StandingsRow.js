@@ -29,13 +29,17 @@ export default function StandingsRow(props) {
         color: props.doColor ? (g_d > 0 ? '#' + g + 'f' + '4' : r_d > 0 ? '#' + 'f' + r + '4' : '#ff4') : '#fff',
     }
 
+    let pcol = {
+        color: props.pcol ? props.pcol : "white"
+    }
+
     // const decimals = props.winChance >= 100.0 ? 1 : 2
 
     return (
         <tr >
-            <td style={{...col}}><b>{props.name}</b></td>
-            <td style={{...col}}><b>{props.score}</b></td>
-            <td style={{...col}}><b>{props.winChance.toFixed(1)}%</b></td>
+            <td style={{...pcol}}><b>{props.name}</b></td>
+            <td style={{}}><b>{props.score}</b></td>
+            <td className="reverse-hue-change" style={{...col}}><b>{props.winChance.toFixed(1)}%</b></td>
         </tr>
     );
 }

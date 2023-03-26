@@ -179,6 +179,18 @@ function Board(props) {
     var startX = 0
     var startY = 0
 
+    const [lastMove, setLastMove] = useState([]);
+    const updateLastMove = (c) => {
+        var history = c.history({verbose: true})
+        if (history.length > 0) {
+            var lm = history[history.length - 1]
+            setLastMove([
+                lm.from,
+                lm.to
+            ])
+        }
+    }
+
     const [trainingPosition, setTrainingPosition] = useState('');
     const [redoStack, setRedoStack] = useState([]);
 
@@ -298,6 +310,7 @@ function Board(props) {
                             setStartSq('');
                             updateSquares('');
                             setRedoStack([]);
+                            setLastMove([moves[i].from, moves[i].to]);
                             // console.log("chose " + moves[i].move);
                             // console.log(a + " - " + (a + moves[i].count));
                         }
@@ -320,6 +333,7 @@ function Board(props) {
             setStartSq('');
             updateSquares('');
             setAutoRespond(false);
+            setLastMove([]);
         } else {
             var c = new Chess();
             c.load_pgn(trainingPosition);
@@ -331,6 +345,7 @@ function Board(props) {
             setStartSq('');
             updateSquares('');
             setAutoRespond(false);
+            updateLastMove(c);
         }
         ReactGA.event({
             category: 'Opening Trainer',
@@ -346,6 +361,7 @@ function Board(props) {
             redoStack.push(m.san);
             setChess(c);
             UpdatePieces(flipped, c);
+            updateLastMove(c);
         }
         setStartSq('');
         updateSquares('');
@@ -363,6 +379,7 @@ function Board(props) {
         setStartSq('');
         updateSquares('');
         setAutoRespond(false);
+        updateLastMove(c);
     }
 
     const Analyze = () => {
@@ -398,6 +415,10 @@ function Board(props) {
                     sqs.push({ type: 'move', x: cords[0] * props.pieceSize, y: cords[1] * props.pieceSize, key: i + 1 });
                 }
             }
+        }
+        for (var i = 0; i < lastMove.length; i++) {
+            const cords = GetCords(flipped, lastMove[i]);
+            sqs.push({type: 'start', x: cords[0] * props.pieceSize, y: cords[1] * props.pieceSize, key: i + 1000})
         }
         setSquares(sqs);
     }
@@ -462,6 +483,7 @@ function Board(props) {
             }
             setChess(chess);
             UpdatePieces();
+            updateLastMove(chess);
         }
         setStartSq("");
         endSq = "";
@@ -490,6 +512,7 @@ function Board(props) {
             setStartSq(sq);
             endSq = "";
             updateSquares(sq);
+            updateLastMove(chess);
         }
     }
 
@@ -600,8 +623,13 @@ function Board(props) {
             setRedoStack([]);
             setGameResult(c.header().Result)
             // setGameResult('1-0')
+            updateLastMove(c);
         }
     }, [props.pgn])
+
+    useEffect(() => {
+        updateSquares('');
+    }, [lastMove])
 
     const [windowSize, setWindowSize] = useState(getWindowSize());
 
@@ -805,6 +833,8 @@ function Board(props) {
                 <GameInfo 
                 whitePlayer={props.whitePlayer}
                 blackPlayer={props.blackPlayer}
+                wcol={props.wcol}
+                bcol={props.bcol}
                 eval={props.eval}
                 whiteChance={props.probs[0]}
                 drawChance={props.probs[1]}
@@ -831,6 +861,8 @@ function Board(props) {
             <ExpandedGameInfo
                 whitePlayer={props.whitePlayer}
                 blackPlayer={props.blackPlayer}
+                wcol={props.wcol}
+                bcol={props.bcol}
                 whiteClock={props.whiteClock}
                 blackClock={props.blackClock}
                 eval={props.eval}
