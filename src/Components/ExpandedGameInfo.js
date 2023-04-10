@@ -59,11 +59,11 @@ function ExpandedGameInfo(props) {
     return (
         <div className='expanded-board-stuff'>
             <div className='player-info black-player'>
-                <h2 className='player'>{props.blackPlayer}</h2>
+                <h2 className='player' style={props.bcol ? {color: props.bcol} : {}}>{props.blackPlayer}</h2>
                 <h2 className='clock'>{props.blackClock}</h2>
             </div>
             <div className='player-info white-player'>
-                <h2 className='player'>{props.whitePlayer}</h2>
+                <h2 className='player' style={props.wcol ? {color: props.wcol} : {}}>{props.whitePlayer}</h2>
                 <h2 className='clock'>{props.whiteClock}</h2>
             </div>
             <div className='vert-eval-bar-container'>

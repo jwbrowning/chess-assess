@@ -1036,6 +1036,7 @@ td {
 
 .board {
   z-index: 1;
+  filter: saturate(50%);
   pointer-events: auto;
   position: relative;
   /* left: 256px;
@@ -1049,17 +1050,27 @@ td {
   cursor: pointer;
   /* box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.376), 0 17px 50px 0 rgba(0, 0, 0, 0.283); */
 }
+.board .square {
+  filter: saturate(200%);
+}
+.board .piece {
+  filter: saturate(200%) contrast(150%);
+}
 
 /*
  ---------------------------- PIECES ----------------------------
 */
 .piece {
+  /* filter: saturate(67%); */
   pointer-events: auto;
   position: absolute;
   left: 0px;
   top: 0px;
   box-shadow: 0 0px 12px 0 rgba(253, 238, 152, 0.146);
   transition-duration: 0s;
+}
+.piece * {
+  /* filter: saturate(150%); */
 }
 .piece:hover {
   cursor: pointer;
@@ -1077,6 +1088,7 @@ td {
 */
 .square {
   /* pointer-events: none; */
+  /* filter: saturate(400%); */
   display: inline-block;
   justify-content: space-evenly;
   align-items: center;
@@ -1105,6 +1117,7 @@ td {
   /* width: 64px;
   height: 64px; */
   display: inline-block;
+  filter: saturate(150%);
 }
 
 .move {
@@ -1118,6 +1131,7 @@ td {
   border-radius: 50%;
   display: inline-block;
   /* transform: translate(20px, 20px); */
+  filter: saturate(150%);
 }
 
 .capture {
@@ -1130,6 +1144,7 @@ td {
   height: 64px; */
   border-radius: 50%;
   display: inline-block;
+  filter: saturate(150%);
 }
 
 

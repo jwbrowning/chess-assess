@@ -11,6 +11,10 @@ const root = document.getElementById("root")
 //     <App />
 //   </React.StrictMode>
 // );
+if (!window.location.host.startsWith("www")){
+    window.location = window.location.protocol + "//" + "www." + window.location.host + window.location.pathname;
+}
+
 render(<App />, root)
 
 // If you want to start measuring performance in your app, pass a function

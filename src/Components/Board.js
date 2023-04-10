@@ -506,13 +506,13 @@ function Board(props) {
             if (chess.move({ from: startSq, to: sq })) {
                 setRedoStack([]);
                 requestResponse(chess);
+                updateLastMove(chess);
             }
             setChess(chess);
             UpdatePieces();
             setStartSq(sq);
             endSq = "";
             updateSquares(sq);
-            updateLastMove(chess);
         }
     }
 
